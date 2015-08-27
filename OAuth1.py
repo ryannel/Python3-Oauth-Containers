@@ -2,8 +2,6 @@ import os
 from dataStore import dataStore
 from requests_oauthlib import OAuth1Session
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
 class OAuth1:
 	def __init__(self, client_key, client_secret, callback_uri, request_token_url, authorization_url, access_token_url):
 		self.client_key = client_key
@@ -39,7 +37,7 @@ class OAuth1:
 		return self.session
 	
 	def createSession(self):
-		session =  OAuth1Session(self.client_key, client_secret=self.client_secret, callback_uri=self.callback_uri, verifier=None)
+		session =  OAuth1Session(self.client_key, client_secret=self.client_secret, callback_uri=self.callback_uri)
 		
 		session.fetch_request_token(self.request_token_url)
 		

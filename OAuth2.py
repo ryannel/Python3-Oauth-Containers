@@ -5,8 +5,6 @@ from dataStore import dataStore
 from requests_oauthlib import OAuth2Session
 from requests_oauthlib.compliance_fixes import linkedin_compliance_fix
 
-os.environ['OAUTHLIB_INSECURE_TRANSPORT'] = '1'
-
 class OAuth2:
 	def __init__(self, client_id, client_secret, redirect_uri, authorization_base_url, token_url, refresh_url, scope):
 		self.client_id = client_id
@@ -57,7 +55,7 @@ class OAuth2:
 		
 		redirect_response = input('Paste the full authorization token here:')
 		
-		session.fetch_token(self.token_url, client_secret=self.client_secret, code=redirect_response, verify=False)
+		session.fetch_token(self.token_url, client_secret=self.client_secret, code=redirect_response)
 		
 		self._setTokenInDataStore(session.token)
 		self.token = session.token
@@ -79,7 +77,7 @@ class OAuth2:
 		    'client_secret': self.client_secret,
 		}
 		
-		self.token = self.session.refresh_token(self.refresh_url, refresh_token=self.token['refresh_token'], verify=False, **extra)
+		self.token = self.session.refresh_token(self.refresh_url, refresh_token=self.token['refresh_token'], **extra)
 		self._setTokenInDataStore(self.token)
 		
 	def _validateToken(self):

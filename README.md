@@ -1,5 +1,5 @@
 # Python3-Oauth-Containers
-Built on requests-oauth and shelve these OAuth classes were created to simplify calls the implementation of requests-oauth calls.
+Built on requests-oauth and shelve these OAuth classes were created to simplify the implementation of requests-oauth.
 
 ## OAuth2 - Google Example
 ```python
